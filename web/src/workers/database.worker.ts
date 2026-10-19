@@ -92,6 +92,8 @@ function totals(dataset: DatasetKey, window: TimeWindow | null): PacketTotal[] {
   const filter = windowFilter(window, 'b.collected_at')
 
   for (const { db } of datasets[dataset]) {
+    // Files opened only for their captures have no counts to add.
+    if (!hasTable(db, 'batched_packets')) continue
     // packet_bound has one row per packet type per session; MAX() guards against duplicates.
     const boundJoin = hasTable(db, 'packet_bound')
       ? `LEFT JOIN (SELECT packet_name, MAX(outgoing) AS outgoing FROM packet_bound GROUP BY packet_name) pb
