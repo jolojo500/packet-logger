@@ -38,9 +38,9 @@ player's packets:
 ```
 
 This saves the next `count` packets that player sends and receives, 200 by default and up to 5000, with each one decoded
-into JSON. The capture is written to the same SQLite file as your counts once the count is reached, the player leaves
-or the server stops, and you get a message telling you which file it's in. You need the `packetlogger.capture`
-permission, which ops have by default.
+into JSON. Once the count is reached, the player leaves or the server stops, the capture is written to the same SQLite
+file as your counts, `plugins/packet-logger/<date>/packets_<time>.sqlite`, and you're sent the file's full path so you
+know which one to grab. You need the `packetlogger.capture` permission, which ops have by default.
 
 To look at it, drop that file on the **capture** page of [packets.cosmos.rip](https://packets.cosmos.rip/#/capture).
 You can go through the packets in order, filter them by direction or name, open any packet to see its contents, or
